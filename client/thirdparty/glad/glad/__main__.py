@@ -16,6 +16,14 @@ from glad.util import Version
 logger = logging.getLogger('glad')
 
 
+def pop_apis_for_spec(apis, spec):
+    result = dict()
+    for feature in spec.features:
+        if feature in apis:
+            result[feature] = apis.pop(feature)
+    return result
+
+
 def main():
     import os.path
     import argparse
@@ -106,7 +114,6 @@ def main():
                              'list of extensions, if missing '
                              'all extensions are included')
     parser.add_argument('--spec', dest='spec', default='gl',
-                        choices=['gl', 'egl', 'glx', 'wgl'],
                         help='Name of the spec')
     parser.add_argument('--reproducible', default=False, action='store_true',
                         help='Makes the build reproducible by not fetching '
@@ -137,38 +144,49 @@ def main():
         logger.warn('--omit-khrplatform enabled, with recent changes to the specification '
                     'this is not very well supported by Khronos anymore and may break your build.')
 
-    spec = get_spec(ns.spec, reproducible=ns.reproducible)
-    if spec.NAME == 'gl':
-        spec.profile = ns.profile
+    cli_apis = dict(ns.api) if ns.api else dict()
+    spec_names = set(ns.spec.split(','))
+    specs = list()
+    for spec_name in spec_names:
+        spec = get_spec(spec_name, reproducible=ns.reproducible)
+        specs.append((spec, pop_apis_for_spec(cli_apis, spec)))
 
-    api = ns.api
-    if api is None or len(api.keys()) == 0:
-        api = {spec.NAME: None}
+    if not len(cli_apis) == 0:
+        raise ValueError(
+            'Unknown APIs "{0}" for specifications "{1}".'.format(', '.join(cli_apis.keys()), ', '.join(spec_names))
+        )
 
-    generator_cls, loader_cls = glad.lang.get_generator(
-        ns.generator, spec.NAME.lower()
-    )
+    for (spec, apis) in specs:
+        if spec.NAME == 'gl':
+            spec.profile = ns.profile
 
-    if loader_cls is None:
-        return parser.error('API/Spec not yet supported')
+        if apis is None or len(apis.keys()) == 0:
+            apis = {spec.NAME: None}
 
-    loader = loader_cls(api, disabled=ns.no_loader, local_files=ns.local_files)
+        generator_cls, loader_cls = glad.lang.get_generator(
+            ns.generator, spec.NAME.lower()
+        )
 
-    logger.info('generating \'%s\' bindings', spec.NAME)
-    with generator_cls(
-            ns.out,
-            spec,
-            api,
-            ns.extensions,
-            loader=loader,
-            opener=opener,
-            local_files=ns.local_files,
-            omit_khrplatform=ns.omit_khrplatform,
-            reproducible=ns.reproducible
-    ) as generator:
-        generator.generate()
+        if loader_cls is None:
+            return parser.error('API/Spec not yet supported')
 
-    logger.info('generating \'%s\' bindings - done', spec.NAME)
+        loader = loader_cls(apis, disabled=ns.no_loader, local_files=ns.local_files)
+
+        logger.info('generating \'%s\' bindings: %r', spec.NAME, apis)
+        with generator_cls(
+                ns.out,
+                spec,
+                apis,
+                ns.extensions,
+                loader=loader,
+                opener=opener,
+                local_files=ns.local_files,
+                omit_khrplatform=ns.omit_khrplatform,
+                reproducible=ns.reproducible
+        ) as generator:
+            generator.generate()
+
+        logger.info('generating \'%s\' bindings - done', spec.NAME)
 
 if __name__ == '__main__':
     main()
