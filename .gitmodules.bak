@@ -12,6 +12,6 @@
 	url = https://github.com/curl/curl.git
 
 [submodule "glad"]
-	path = client/thirdparty/glad
-	url = https://github.com/Dav1dde/glad
+	path = client/thirdparty/glad/
+	url = https://github.com/Dav1dde/glad.git
 
