@@ -1,0 +1,1 @@
+-IC:/Users/Dell/Desktop/projects/HackChat/client/thirdparty/curl/include -IC:/Users/Dell/Desktop/projects/HackChat/client/thirdparty/glfw/include -IC:/Users/Dell/Desktop/projects/HackChat/client/thirdparty/glad/include -IC:/Users/Dell/Desktop/projects/HackChat/build/thirdparty/glad/include -isystem C:/Users/Dell/Desktop/MinGW/include

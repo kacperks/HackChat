@@ -1,0 +1,9 @@
+[submodule "libcurl"]
+	path = client/thirdparty/curl
+	url = https://github.com/curl/curl.git
+	branch = master
+    
+[submodule "glfw"]
+	path = client/thirdparty/glfw
+	url = https://github.com/glfw/glfw.git
+	branch = docking

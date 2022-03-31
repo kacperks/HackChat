@@ -1,0 +1,574 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "thirdparty/glfw/src/glfw3.dll"
+		},
+		{
+			"path" : "thirdparty/glfw/src/libglfw3dll.a"
+		},
+		{
+			"path" : "thirdparty/glfw/src/glfw3.pdb"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"install",
+			"target_link_libraries",
+			"target_compile_options",
+			"target_compile_definitions",
+			"target_include_directories",
+			"set_target_properties",
+			"target_sources"
+		],
+		"files" : 
+		[
+			"thirdparty/glfw/src/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 2,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 394,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 329,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 352,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 359,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 366,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 273,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 277,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 285,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 40,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 140,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 143,
+				"parent" : 0
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 130,
+				"parent" : 0
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 16,
+				"parent" : 0
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 41,
+				"parent" : 0
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 120,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g"
+				},
+				{
+					"backtrace" : 7,
+					"fragment" : "-Wall"
+				},
+				{
+					"fragment" : "-std=c99"
+				},
+				{
+					"fragment" : "-Wdeclaration-after-statement"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 8,
+					"define" : "UNICODE"
+				},
+				{
+					"backtrace" : 9,
+					"define" : "WINVER=0x0501"
+				},
+				{
+					"define" : "_GLFW_BUILD_DLL"
+				},
+				{
+					"backtrace" : 10,
+					"define" : "_GLFW_WIN32"
+				},
+				{
+					"backtrace" : 8,
+					"define" : "_UNICODE"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 11,
+					"path" : "C:/Users/Dell/Desktop/projects/HackChat/client/thirdparty/glfw/include"
+				},
+				{
+					"backtrace" : 12,
+					"path" : "C:/Users/Dell/Desktop/projects/HackChat/client/thirdparty/glfw/src"
+				},
+				{
+					"backtrace" : 12,
+					"path" : "C:/Users/Dell/Desktop/projects/HackChat/build/thirdparty/glfw/src"
+				}
+			],
+			"language" : "C",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					13
+				],
+				"standard" : "99"
+			},
+			"sourceIndexes" : 
+			[
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				16,
+				17,
+				18,
+				19,
+				22,
+				23,
+				24,
+				27,
+				28,
+				29,
+				30,
+				31
+			]
+		},
+		{
+			"defines" : 
+			[
+				{
+					"backtrace" : 8,
+					"define" : "UNICODE"
+				},
+				{
+					"backtrace" : 9,
+					"define" : "WINVER=0x0501"
+				},
+				{
+					"define" : "_GLFW_BUILD_DLL"
+				},
+				{
+					"backtrace" : 10,
+					"define" : "_GLFW_WIN32"
+				},
+				{
+					"backtrace" : 8,
+					"define" : "_UNICODE"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 11,
+					"path" : "C:/Users/Dell/Desktop/projects/HackChat/client/thirdparty/glfw/include"
+				},
+				{
+					"backtrace" : 12,
+					"path" : "C:/Users/Dell/Desktop/projects/HackChat/client/thirdparty/glfw/src"
+				},
+				{
+					"backtrace" : 12,
+					"path" : "C:/Users/Dell/Desktop/projects/HackChat/build/thirdparty/glfw/src"
+				}
+			],
+			"language" : "RC",
+			"sourceIndexes" : 
+			[
+				32
+			]
+		}
+	],
+	"folder" : 
+	{
+		"name" : "GLFW3"
+	},
+	"id" : "glfw::@66b0edeafaa5c4890854",
+	"install" : 
+	{
+		"destinations" : 
+		[
+			{
+				"backtrace" : 2,
+				"path" : "lib"
+			},
+			{
+				"backtrace" : 2,
+				"path" : "bin"
+			}
+		],
+		"prefix" : 
+		{
+			"path" : "C:/Program Files (x86)/hc-client"
+		}
+	},
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-static-libgcc",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-Wl,--nxcompat",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-Wl,--dynamicbase",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "-Wl,--high-entropy-va",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
+				"role" : "libraries"
+			}
+		],
+		"language" : "C"
+	},
+	"name" : "glfw",
+	"nameOnDisk" : "glfw3.dll",
+	"paths" : 
+	{
+		"build" : "thirdparty/glfw/src",
+		"source" : "thirdparty/glfw/src"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				14,
+				15,
+				20,
+				21,
+				25,
+				26
+			]
+		},
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				16,
+				17,
+				18,
+				19,
+				22,
+				23,
+				24,
+				27,
+				28,
+				29,
+				30,
+				31,
+				32
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"path" : "thirdparty/glfw/include/GLFW/glfw3.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "thirdparty/glfw/include/GLFW/glfw3native.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "thirdparty/glfw/src/internal.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "thirdparty/glfw/src/platform.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "thirdparty/glfw/src/mappings.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "thirdparty/glfw/src/context.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "thirdparty/glfw/src/init.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "thirdparty/glfw/src/input.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "thirdparty/glfw/src/monitor.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "thirdparty/glfw/src/platform.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "thirdparty/glfw/src/vulkan.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "thirdparty/glfw/src/window.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "thirdparty/glfw/src/egl_context.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "thirdparty/glfw/src/osmesa_context.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "thirdparty/glfw/src/null_platform.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "thirdparty/glfw/src/null_joystick.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "thirdparty/glfw/src/null_init.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "thirdparty/glfw/src/null_monitor.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "thirdparty/glfw/src/null_window.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "thirdparty/glfw/src/null_joystick.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 14,
+			"path" : "thirdparty/glfw/src/win32_time.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 14,
+			"path" : "thirdparty/glfw/src/win32_thread.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 14,
+			"compileGroupIndex" : 0,
+			"path" : "thirdparty/glfw/src/win32_module.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 14,
+			"compileGroupIndex" : 0,
+			"path" : "thirdparty/glfw/src/win32_time.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 14,
+			"compileGroupIndex" : 0,
+			"path" : "thirdparty/glfw/src/win32_thread.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 15,
+			"path" : "thirdparty/glfw/src/win32_platform.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 15,
+			"path" : "thirdparty/glfw/src/win32_joystick.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 15,
+			"compileGroupIndex" : 0,
+			"path" : "thirdparty/glfw/src/win32_init.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 15,
+			"compileGroupIndex" : 0,
+			"path" : "thirdparty/glfw/src/win32_joystick.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 15,
+			"compileGroupIndex" : 0,
+			"path" : "thirdparty/glfw/src/win32_monitor.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 15,
+			"compileGroupIndex" : 0,
+			"path" : "thirdparty/glfw/src/win32_window.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 15,
+			"compileGroupIndex" : 0,
+			"path" : "thirdparty/glfw/src/wgl_context.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 16,
+			"compileGroupIndex" : 1,
+			"path" : "C:/Users/Dell/Desktop/projects/HackChat/build/thirdparty/glfw/src/glfw.rc",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "SHARED_LIBRARY"
+}
