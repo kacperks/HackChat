@@ -13,5 +13,5 @@
 
 [submodule "glad"]
 	path = client/thirdparty/glad
-	url = https://github.com/Dav1dde/glad.git
+	url = https://github.com/Dav1dde/glad
 
