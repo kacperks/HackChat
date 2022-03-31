@@ -1,4 +1,4 @@
-/build/*
+/build/
 /server/config.ini
 /server/config.ini.bak
-client/thirdparty/glad/glad/*
+client/thirdparty/glad/glad/
