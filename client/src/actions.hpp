@@ -6,7 +6,7 @@
 namespace hc{
     class Session{
     public:
-        Session():curl(curl_easy_init()), token("your token"), ip("http://2.tcp.ngrok.io:14198") {}
+        Session(const char*_ip, const char*_token):curl(curl_easy_init()), token(_token), ip(_ip) {}
         int register_user(const char* username, const char* email,const char* password);
         void login(const char* email, const char* password);
         void logout();

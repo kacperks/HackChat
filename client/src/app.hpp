@@ -7,7 +7,7 @@
 #include "actions.hpp"
 
 namespace hc{
-    inline hc::Session session;
+    inline hc::Session session = hc::Session("localhost:5000", "token");
 
     inline hc::hcwindow win;
 }

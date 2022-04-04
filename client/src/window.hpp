@@ -11,7 +11,7 @@ namespace hc {
     class hcwindow {
 		public:
 			hcwindow( const char* title,int _sizex, int _sizey);
-			hcwindow() { hcwindow("HackChat", 1024, 940); }
+			hcwindow() { hcwindow("HackChat", 480, 480); }
 			int sizex, sizey;
 			GLFWwindow* window;
 	};

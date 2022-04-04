@@ -7,8 +7,3 @@
 	path = client/thirdparty/glfw
 	url = https://github.com/glfw/glfw.git
 	branch = docking
-
-[submodule "glad"]
-	path = client/thirdparty/glad/
-	url = https://github.com/Dav1dde/glad.git
-
