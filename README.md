@@ -1,3 +1,5 @@
 # HackChat
 WIP Cross-platform text messenger
-made in C++/Python/ImGui/curl
+
+Client Made with C++/ImGui/GL
+Server Made with Python
