@@ -2,10 +2,10 @@
 WIP Cross-platform text messenger
 
 ## C++ Client deps
-* glad
-* glfw
-* imgui
-* libcurl
+* glad https://github.com/Dav1dde/glad
+* glfw https://github.com/glfw/glfw
+* imgui https://github.com/ocornut/imgui
+* libcurl https://github.com/curl/curl
 
 ## Python Server deps
 * flask https://github.com/pallets/flask
