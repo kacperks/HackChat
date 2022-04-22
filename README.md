@@ -2,7 +2,7 @@
 WIP Cross-platform text messenger
 
 ## C++ Client deps
-* glad https://github.com/Dav1dde/glad
+* glew https://github.com/nigels-com/glew
 * glfw https://github.com/glfw/glfw
 * imgui https://github.com/ocornut/imgui
 * libcurl https://github.com/curl/curl
