@@ -2,8 +2,6 @@
 #include "ui.hpp"
 namespace hc {
     hcwindow::hcwindow(const char* title, int _sizex, int _sizey) : sizex(_sizex) , sizey(_sizey) {
-            
-        const char* glsl_version = "#version 330";
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
         
@@ -14,8 +12,12 @@ namespace hc {
         glfwMakeContextCurrent(window);
         glfwSwapInterval(1);
         
-        assert(gladLoadGLLoader((GLADloadproc)glfwGetProcAddress));
-        if (!window) glfwTerminate();
+		GLenum err = glewInit();
+		if (GLEW_OK != err)
+		{
+		  fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
+		}
+		
         glViewport(0, 0, sizex, sizey); 
 
         IMGUI_CHECKVERSION();
@@ -24,9 +26,9 @@ namespace hc {
         ImGuiIO& io = ImGui::GetIO(); (void)io;
         ImGui::StyleColorsDark();
         ImGui_ImplGlfw_InitForOpenGL(window, true);
-        ImGui_ImplOpenGL3_Init(glsl_version);
+        ImGui_ImplOpenGL3_Init("#version 110");
         ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-        
+        ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
         while (!glfwWindowShouldClose(window))
         {
@@ -36,8 +38,12 @@ namespace hc {
             ImGui::NewFrame();
 
             // CALL UI RENDER FUNCTION HERE
-            drawstartup();
 
+            //if(!session._islogged_in())
+            //	drawstartup();
+			//else
+			//	drawchat();
+				
             ImGui::Render();
             glfwGetFramebufferSize(window, &sizex, &sizey);
             glViewport(0, 0, sizex, sizey);

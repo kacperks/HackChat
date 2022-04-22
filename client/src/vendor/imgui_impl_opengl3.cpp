@@ -183,9 +183,15 @@ bool    ImGui_ImplOpenGL3_Init(const char* glsl_version)
         glsl_version = "#version 130";
 #endif
     IM_ASSERT((int)strlen(glsl_version) + 2 < IM_ARRAYSIZE(g_GlslVersionString));
+
+
+	#if defined(_WIN32)
     strcpy_s(g_GlslVersionString, glsl_version);
     strcat_s(g_GlslVersionString, "\n");
-
+	#elif defined(__linux__)
+	strcpy(g_GlslVersionString, glsl_version);
+	strcat(g_GlslVersionString, "\n");
+	#endif
     // Debugging construct to make it easily visible in the IDE and debugger which GL loader has been selected.
     // The code actually never uses the 'gl_loader' variable! It is only here so you can read it!
     // If auto-detection fails or doesn't select the same GL loader file as used by your application,
@@ -512,8 +518,13 @@ bool    ImGui_ImplOpenGL3_CreateDeviceObjects()
 
     // Parse GLSL version string
     int glsl_version = 130;
-    sscanf_s(g_GlslVersionString, "#version %d", &glsl_version);
 
+    #if defined(_WIN32)
+    sscanf_s(g_GlslVersionString, "#version %d", &glsl_version);
+	#elif defined(__linux__)
+	sscanf(g_GlslVersionString, "#version %d", &glsl_version);
+	#endif
+	
     const GLchar* vertex_shader_glsl_120 =
         "uniform mat4 ProjMtx;\n"
         "attribute vec2 Position;\n"
