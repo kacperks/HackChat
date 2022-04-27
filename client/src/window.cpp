@@ -21,7 +21,7 @@ namespace hc {
         glViewport(0, 0, sizex, sizey); 
 
         IMGUI_CHECKVERSION();
-
+		GUI ui;
         ImGui::CreateContext();
         ImGuiIO& io = ImGui::GetIO(); (void)io;
         ImGui::StyleColorsDark();
@@ -39,10 +39,7 @@ namespace hc {
 
             // CALL UI RENDER FUNCTION HERE
 
-            //if(!session._islogged_in())
-            //	drawstartup();
-			//else
-			//	drawchat();
+	    	ui.display();
 				
             ImGui::Render();
             glfwGetFramebufferSize(window, &sizex, &sizey);

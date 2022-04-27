@@ -8,11 +8,11 @@
 namespace hc {
 	class GUI {
 	public:
-		GUI() {}
+		GUI() : chat("hc"){}
 	
 		void init();
 		void display();	
-		void addmessage(const char* username, const char* message);
+		void addmessage(std::string username, std::string message);
 		
 	private:
 		void setstyle();
@@ -20,5 +20,7 @@ namespace hc {
 		void chatwindow();
 		void toolbar();
 		void dockspace();
+
+		std::string chat;
 	};
 }
