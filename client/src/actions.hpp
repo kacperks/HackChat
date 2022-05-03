@@ -6,8 +6,9 @@
 namespace hc{
     class Session{
     public:
+    	Session() : is_logged_in(false) {} 
         Session(const char*_ip, const char*_token):is_logged_in(false), curl(curl_easy_init()), token(_token), ip(_ip) {}
-        int register_user(const char* username, const char* email,const char* password);
+        void register_user(const char* username, const char* email,const char* password);
         void login(const char* email, const char* password);
         void debuglogin() { is_logged_in = true; }
         void logout();

@@ -1,7 +1,7 @@
 #include "actions.hpp"
 
 namespace hc{
-    int Session::register_user(const char* username, const char* email, const char* password){
+    void Session::register_user(const char* username, const char* email, const char* password){
         this->username = username;
         this->email = email;
         this->password = password;
@@ -20,7 +20,7 @@ namespace hc{
         }
         curl_easy_cleanup(curl);
         is_logged_in = true;
-        return res["id"];
+        //return res["id"];
     }
     void Session::login(const char* email, const char* password){
         this->username = username;
