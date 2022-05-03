@@ -48,4 +48,8 @@ namespace hc{
 
         curl_easy_cleanup(curl);
     }
+
+    void Session::logout(){
+    	
+    }
 }

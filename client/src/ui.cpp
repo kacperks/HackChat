@@ -36,13 +36,12 @@ namespace hc{
     void GUI::chatwindow(){
     	ImGui::Begin("Chat Session", nullptr);
     	ImGui::TextColored(ImVec4(1,0,1,1), "HackChat v0.1");
-    	ImGui::BeginChild("Scrolling");
+    	ImGui::BeginChild();
     	ImGui::Text(chat.c_str());
     	ImGui::EndChild();
 		if(ImGui::InputText("Your Message", sendbuf, IM_ARRAYSIZE(sendbuf))) {}
 		ImGui::SameLine();
 		if(ImGui::Button("Send")) { addmessage("jol", std::string(sendbuf)); }
-    	
     	ImGui::End();
     }
 }
