@@ -7,9 +7,7 @@
 #include "actions.hpp"
 
 namespace hc{
-    inline hc::Session session;
-
-    inline hc::hcwindow win;
+    //hc::hcwindow win;
 }
 
 #endif

@@ -110,9 +110,8 @@ def get_user_by_username(username):
         return jsonify({"message": "Invalid token"})
 
 # Get a user by email
-@app.route('/useremail/<email>', methods=['GET'])
-def get_user_by_email(email):
-    token = request.json['token']
+@app.route('/useremail/<token>/<email>', methods=['GET'])
+def get_user_by_email(token,email):
     if token == secret_key:
         user = User.query.filter_by(email=email).first()
         return user_schema.jsonify(user)
