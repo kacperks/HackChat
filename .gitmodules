@@ -10,5 +10,5 @@
 
 [submodule "Py"]
 	path = Lubchat/
-	url = https://github.com/lubek-dc/Lubchat
+	url = https://github.com/lubek-dc/Lubchat.git
 	branch = master
