@@ -1,9 +1,14 @@
 [submodule "libcurl"]
-	path = client/thirdparty/curl
+	path = cpp-client/thirdparty/curl
 	url = https://github.com/curl/curl.git
 	branch = master
     
 [submodule "glfw"]
-	path = client/thirdparty/glfw
+	path = cpp-client/thirdparty/glfw
 	url = https://github.com/glfw/glfw.git
 	branch = docking
+
+[submodule "Py"]
+	path = py-client/
+	url = https://github.com/lubek-dc/Lubchat
+	branch = master

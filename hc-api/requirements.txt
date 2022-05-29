@@ -1,0 +1,7 @@
+uuid
+configparser
+functools
+pyjwt
+flask
+flask_marshmallow
+flask_sqlalchemy
