@@ -9,6 +9,6 @@
 	branch = docking
 
 [submodule "Py"]
-	path = py-client/
+	path = Lubchat/
 	url = https://github.com/lubek-dc/Lubchat
 	branch = master
