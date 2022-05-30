@@ -8,7 +8,7 @@ WIP Cross-platform text messenger
 * first install the requirements via ` pip install -r requirements.txt `
 
 NOTE: If theres an ERROR then ignore it and follow to next step if something dose'nt work properly then contact support at https://github.com/kacperks/HackChat/issues
-
+(hcapi is entirely mady by lubek-dc)
 * Database setup:
 ```
 python3
