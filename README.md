@@ -17,7 +17,7 @@ python3
 >>> exit()
 ```
 
-Then Just open api.py in any editor and edit secret key in line 17 to something very hard to guess AND DO NOT SHARE IT WITH OTHERS
+Then Just open api.py in any editor and edit secret key in line 21 to something very hard to guess AND DO NOT SHARE IT WITH OTHERS
 
 ## Python Client https://github.com/lubek-dc/Lubchat
 
