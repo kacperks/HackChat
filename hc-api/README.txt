@@ -5,4 +5,4 @@ and type these commands:
 >>> from api import db
 >>> db.create_all()
 >>> exit()
-Then Just open api.py in any editor and edit secret key in line 17 to something very hard to guess AND DO NOT SHARE IT WITH OTHERS
+Then Just open api.py in any editor and edit secret key in line 21 to something very hard to guess AND DO NOT SHARE IT WITH OTHERS
