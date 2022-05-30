@@ -9,7 +9,11 @@ import jwt # PYJWT
 from flask import Flask, request, jsonify, make_response
 from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
-
+global rankid 
+# Ranks:
+# 1. Admin
+# 2. Mod
+# 3. User
 # init app
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -29,7 +33,8 @@ class Users(db.Model):
     public_id = db.Column(db.Integer)
     name = db.Column(db.String(50))
     password = db.Column(db.String(50))
-    admin = db.Column(db.Boolean)
+    rankid = db.Column(db.Integer)
+
 
 # Message Class/Model
 class Messages(db.Model):
@@ -56,10 +61,9 @@ def token_required(f):
         return f(current_user, *args, **kwargs)
 
     return decorated
-def admin_required(f):
+def rank_required(f):
     @wraps(f)
-    def decorator(*args, **kwargs):
-
+    def decorated(*args, **kwargs):
         token = None
 
         if 'x-access-tokens' in request.headers:
@@ -68,25 +72,23 @@ def admin_required(f):
         if not token:
             return jsonify({'message': 'a valid token is missing'})
         try:
-            data = jwt.decode(token, secret_key)
+            data = jwt.decode(token, secret_key, algorithms=['HS256'])
             current_user = Users.query.filter_by(public_id=data['public_id']).first()
-            if current_user.admin is False:
-                return jsonify({'message': 'Restricted area you must be admin'})
         except:
             return jsonify({'message': 'token is invalid'})
-
+        if current_user.rankid <= rankid:
+            return jsonify({'message': 'You do not have the required rank'})
         return f(current_user, *args, **kwargs)
 
-    return decorator
+    return decorated
 
 # User Schema
 class UserSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'public_id', 'name', 'password', 'admin')
+        fields = ('id', 'public_id', 'name', 'password', 'rankid')
 
 user_schema = UserSchema()
 users_schema = UserSchema(many=True)
-
 # Message Schema
 class MessageSchema(ma.Schema):
     class Meta:
@@ -99,19 +101,19 @@ messages_schema = MessageSchema(many=True)
 @app.route('/register', methods=['POST'])
 def register():
     if request.method == 'POST':
+        public_id = str(uuid.uuid4())
         name = request.json['name']
         password = request.json['password']
-        public_id = str(uuid.uuid4())
-        admin = False
-        if name == '' or password == '':
-            return jsonify({'message': 'name or password is missing', 'code': 400})
-        if Users.query.filter_by(name=name).first() is not None:
-            return jsonify({'message': 'User already exists', 'code': 409})
-        user = Users(name=name, password=password, public_id=public_id, admin=admin)
-        db.session.add(user)
-        db.session.commit()
-        return jsonify({'message': 'User created successfully','code':200})
-
+        rankid = 3
+        # check if user already exists
+        user = Users.query.filter_by(name=name).first()
+        if not user:
+            new_user = Users(public_id=public_id, name=name, password=password, rankid=rankid)
+            db.session.add(new_user)
+            db.session.commit()
+            return jsonify({'message': 'New user created successfully'})
+        else:
+            return jsonify({'message': 'User already exists'})
 # Login a user
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -126,23 +128,83 @@ def login():
         token = jwt.encode({'public_id': user.public_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, secret_key)
         return jsonify({'token': token, 'code': 200})
     return jsonify({'message': 'Wrong password', 'code': 401})
+# Get User info
+@app.route('/user', methods=['GET'])
+@token_required
+def get_user(current_user):
+    # remove password from response
+    user = Users.query.filter_by(public_id=current_user.public_id).first()
+    #remove password from response
+    user.password = None
+    user.public_id = None
+    return user_schema.jsonify(user)
+    
+# Grant rank to user
+rankid = 1
+@app.route('/grant_rank', methods=['POST'])
+@rank_required
+def grant_rank(current_user):
+    if request.method == 'POST':
+        userid = request.json['userid']
+        rankid = request.json['rankid']
+        if userid == '' or rankid == '':
+            return jsonify({'message': 'userid or rankid is missing', 'code': 400})
+        user = Users.query.filter_by(public_id=userid).first()
+        if user is None:
+            return jsonify({'message': 'User does not exist', 'code': 404})
+        user.rankid = rankid
+        db.session.commit()
+        return jsonify({'message': 'Rank granted successfully', 'code': 200})
+# Revoke rank from user
+rankid = 1
+@app.route('/revoke_rank', methods=['POST'])
+@rank_required
+def revoke_rank(current_user):
+    if request.method == 'POST':
+        userid = request.json['userid']
+        if userid == '':
+            return jsonify({'message': 'userid is missing', 'code': 400})
+        user = Users.query.filter_by(public_id=userid).first()
+        if user is None:
+            return jsonify({'message': 'User does not exist', 'code': 404})
+        user.rankid = 0
+        db.session.commit()
+        return jsonify({'message': 'Rank revoked successfully', 'code': 200})
 
 # Get all users
+rankid = 1
 @app.route('/users', methods=['GET'])
-@admin_required
-def get_users():
-    all_users = Users.query.all()
-    result = users_schema.dump(all_users)
-    return jsonify(result, 200)
+@rank_required
+def get_users(current_user):
+    users = Users.query.all()
+    return jsonify({'users': users_schema.dump(users), 'code': 200})
+
+# Get user by id
+@app.route('/user/<id>', methods=['GET'])
+@token_required
+def get_user_by_id(current_user, id):
+    # remove password from response
+    user = Users.query.filter_by(id=id).first()
+    if user is None:
+        return jsonify({'message': 'User does not exist', 'code': 404})
+    return jsonify({'user': user_schema.dump(user), 'code': 200})
+
+# Get User by name
+@app.route('/user/name/<name>', methods=['GET'])
+@token_required
+def get_user_by_name(current_user, name):
+    # remove password from response
+    user = Users.query.filter_by(name=name).first()
+    if user is None:
+        return jsonify({'message': 'User does not exist', 'code': 404})
+    return jsonify({'user': user_schema.dump(user), 'code': 200})
 
 # Get last 10 messages
 @app.route('/messages', methods=['GET'])
 @token_required
-def get_messages(test):
-    all_messages = Messages.query.order_by(Messages.id.desc()).limit(10).all()
-    result = messages_schema.dump(all_messages)
-    return jsonify(result, 200)
-
+def get_messages(current_user):
+    messages = Messages.query.order_by(Messages.id.desc()).limit(10).all()
+    return jsonify({'messages': messages_schema.dump(messages), 'code': 200})
 # Get a single message
 @app.route('/message/<id>', methods=['GET'])
 @token_required
@@ -197,40 +259,28 @@ def add_message(current_user):
         return jsonify({'message': 'Message added successfully', 'code': 200})
 
 # Delete a message
+rankid = 2
 @app.route('/delete_message/<id>', methods=['DELETE'])
-@admin_required
-def delete_message(current_user, id):
-    if request.method == 'DELETE':
-        message = Messages.query.get(id)
-        if message is None:
-            return jsonify({'message': 'Message not found', 'code': 404})
-        db.session.delete(message)
-        db.session.commit()
-        return jsonify({'message': 'Message deleted successfully', 'code': 200})
+@rank_required
+def delete_message(id, current_user):
+    message = Messages.query.get(id)
+    if message is None:
+        return jsonify({'message': 'Message not found', 'code': 404})
+    db.session.delete(message)
+    db.session.commit()
+    return jsonify({'message': 'Message deleted successfully', 'code': 200})
 
 # Delete Specific User
+rankid = 1
 @app.route('/delete_user/<id>', methods=['DELETE'])
-@admin_required
-def delete_user(current_user, id):
-    if request.method == 'DELETE':
-        user = Users.query.get(id)
-        if user is None:
-            return jsonify({'message': 'User not found', 'code': 404})
-        db.session.delete(user)
-        db.session.commit()
-        return jsonify({'message': 'User deleted successfully', 'code': 200})
-
-# Delete Specific Message
-@app.route('/delete_specific_message/<id>', methods=['DELETE'])
-@admin_required
-def delete_specific_message(current_user, id):
-    if request.method == 'DELETE':
-        message = Messages.query.get(id)
-        if message is None:
-            return jsonify({'message': 'Message not found', 'code': 404})
-        db.session.delete(message)
-        db.session.commit()
-        return jsonify({'message': 'Message deleted successfully', 'code': 200})
+@rank_required
+def delete_user(id, current_user):
+    user = Users.query.get(id)
+    if user is None:
+        return jsonify({'message': 'User not found', 'code': 404})
+    db.session.delete(user)
+    db.session.commit()
+    return jsonify({'message': 'User deleted successfully', 'code': 200})
 
 # Run the app
 if __name__ == '__main__':
