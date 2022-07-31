@@ -5,7 +5,7 @@ WIP Cross-platform text messenger
 
 ## Python Api Setup:
 
-* first install the requirements via ` pip install -r requirements.txt `
+* first go to the hcapi's folder then install the requirements via ` pip install -r requirements.txt `
 
 NOTE: If theres an ERROR then ignore it and follow to next step if something dose'nt work properly then contact support at https://github.com/kacperks/HackChat/issues
 (hcapi is entirely made by lubek-dc)
