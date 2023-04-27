@@ -1,4 +1,4 @@
-# HackChat
+# HackChat (Made Entirely By Lubek)
 WIP Cross-platform text messenger
 
 * clone th repo via ` git clone https://github.com/kacperks/HackChat/ `
